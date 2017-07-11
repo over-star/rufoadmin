@@ -1,0 +1,8 @@
+{
+  "name": "edit-env",
+  "version": "1.0",
+  "title": "编辑env文件",
+  "description": "编辑env文件",
+  "author": "rufo",
+  "namespace": "Env"
+}
