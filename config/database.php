@@ -105,9 +105,7 @@ return [
     */
 
     'redis' => [
-
         'client' => 'predis',
-
         'default' => [
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),
@@ -115,6 +113,15 @@ return [
             'database' => 0,
         ],
 
+    ],
+    'mongodb' => [
+        'client' => 'mongodb',
+        'default' => [
+            'host' => env('MONGODB_HOST', 'mongodb://localhost'),
+            'password' => env('MONGODB_HOST_PASSWORD', null),
+            'port' => env('MONGODB_PORT', 27017),
+            'database' => env('MONGODB_DATABASE', 'test'),
+        ],
     ],
 
 ];

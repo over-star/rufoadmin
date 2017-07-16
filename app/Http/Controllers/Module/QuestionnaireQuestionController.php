@@ -143,7 +143,7 @@ class QuestionnaireQuestionController extends BaseController
         }catch (Exception $e){
             DB::rollBack();
         }
-        return redirect("admin/questionnaire/question/{$questionnaire_question->questionnaire_id}");
+        return redirect("questionnaire/question/{$questionnaire_question->questionnaire_id}");
     }
 
     /**

@@ -3,7 +3,6 @@
     <link rel="stylesheet" type="text/css" href="{{asset('vendor/plugins/edit-env/wangEditor/css/wangEditor.min.css')}}">
 @stop
 @section('content')
-
     <div class="alert alert-info">
         <i class="ace-icon fa fa-hand-o-right"></i>
         怎么获取值呢？我就不告诉你呢

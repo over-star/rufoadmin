@@ -1,0 +1,8 @@
+{
+  "name": "log-behavior",
+  "version": "1.0",
+  "title": "行为日志记录",
+  "description": "行为日志记录",
+  "author": "rufo",
+  "namespace": "Behavior"
+}

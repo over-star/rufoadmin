@@ -11,6 +11,7 @@
         "laravel/framework": "5.4.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
+        "overtrue/easy-sms": "^0.0.9",
         "santigarcor/laratrust": "3.2.*",
         "spatie/laravel-backup": "^3.0.0",
         "tymon/jwt-auth": "0.5.*"
@@ -26,7 +27,7 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Rufo\\Admin\\": "rufo/admin/src"
+            "Rufo\\Admin\\": "packages/admin/src"
         }
     },
     "autoload-dev": {

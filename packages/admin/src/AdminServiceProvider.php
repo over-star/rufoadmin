@@ -5,9 +5,13 @@ namespace Rufo\Admin;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
+use Rufo\Admin\Contracts\LogInterface;
 use Rufo\Admin\Facades\AdminFacade;
+use Rufo\Admin\Facades\LogsFacade;
 use Rufo\Admin\Http\Middleware\RufoAdminMiddleware;
+use Rufo\Admin\Strategies\MysqlStrategy;
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -24,7 +28,13 @@ class AdminServiceProvider extends ServiceProvider
         $this->app->singleton('admin', function () {
             return new Admin();
         });
-
+        //绑定日志记录
+        $loader->alias('Logs', LogsFacade::class);
+        $this->app->bind(LogInterface::class, MysqlStrategy::class);
+        $this->app->singleton('logs', function () {
+            return new Logs(App::make(LogInterface::class));
+        });
+        //加载配置文件
         $this->loadHelpers();
         $this->registerConfigs();
     }

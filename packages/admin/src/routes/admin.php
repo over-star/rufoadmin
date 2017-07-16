@@ -1,6 +1,7 @@
 <?php
 
 
+use Rufo\Ruquest\Support\MongoDBHelper;
 
 Route::group(['as' => 'admin.'], function () {
     $namespacePrefix = '\\'.config('admin.controllers.namespace').'\\';
@@ -12,6 +13,9 @@ Route::group(['as' => 'admin.'], function () {
     Route::get('auth/user/login/github', ['uses' => $namespacePrefix.'AdminController@githubLogin']);
     Route::get('auth/user/callback', ['uses' => $namespacePrefix.'AdminController@callback']);
     Route::get('plugins/{name}/{where}',['uses' => $namespacePrefix.'PluginsController@loadAsset']);
+    Route::get('/mono',function (){
+
+    });
 
    //后台权限路由
     Route::group(['middleware' => 'admin.user'], function () use ($namespacePrefix) {

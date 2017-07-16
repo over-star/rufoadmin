@@ -107,7 +107,7 @@
                 </a>
                 {{ csrf_field() }}
                 <div class="pull-right">
-                    <input type="submit" class="btn btn-success" value="添加"/>
+                    <input type="submit" class="btn btn-success" value="修改"/>
                 </div>
                 <div class="clearfix"></div>
             </div>

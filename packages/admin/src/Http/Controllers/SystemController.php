@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Rufo\Admin\Models\Setting;
+use Rufo\Request\Support\MongoDBHelper;
 
 class SystemController extends Controller
 {
