@@ -46,7 +46,8 @@ class UserController extends Controller
     }
     public function permissionDestroy($id,Request $request)
     {
-        if(!$id) return false;
+        if(!is_numeric($id)) return false;
+        //Permission::query()->where('id',$id)->delete();
         Permission::destroy($id);
         return redirect('admin/permission/index');
     }

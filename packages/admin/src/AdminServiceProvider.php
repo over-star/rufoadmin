@@ -3,9 +3,12 @@
 namespace Rufo\Admin;
 
 use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Rufo\Admin\Contracts\LogInterface;
 use Rufo\Admin\Facades\AdminFacade;
@@ -47,6 +50,7 @@ class AdminServiceProvider extends ServiceProvider
     {
         $router->aliasMiddleware('admin.user', RufoAdminMiddleware::class);
         $this->loadViewsFrom(__DIR__.'/views', 'admin');
+       // $this->bulidEvent();
     }
 
     /**
@@ -64,6 +68,34 @@ class AdminServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             dirname(__DIR__).'/publishable/config/admin.php', 'admin'
         );
+    }
+
+    private function bulidEvent()
+    {
+        Model::saved(function($post){
+            $user_id=Auth::user()->id;
+            $message="用户保存了".$post;
+            $ip=Request::getClientIp();
+            Logs::put($message, $user_id,$ip);
+        });
+        Model::updated(function($post){
+            $user_id=Auth::user()->id;
+            $message="用户保存了".$post;
+            $ip=Request::getClientIp();
+            Logs::put($message, $user_id,$ip);
+        });
+        Model::deleted(function($post){
+            $user_id=Auth::user()->id;
+            $message="用户保存了".$post;
+            $ip=Request::getClientIp();
+            Logs::put($message, $user_id,$ip);
+        });
+        Model::created(function($post){
+            $user_id=Auth::user()->id;
+            $message="用户保存了".$post;
+            $ip=Request::getClientIp();
+            Logs::put($message, $user_id,$ip);
+        });
     }
 
 }
