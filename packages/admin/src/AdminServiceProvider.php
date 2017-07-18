@@ -50,7 +50,7 @@ class AdminServiceProvider extends ServiceProvider
     {
         $router->aliasMiddleware('admin.user', RufoAdminMiddleware::class);
         $this->loadViewsFrom(__DIR__.'/views', 'admin');
-       // $this->bulidEvent();
+        $this->bulidEvent();
     }
 
     /**
@@ -72,30 +72,14 @@ class AdminServiceProvider extends ServiceProvider
 
     private function bulidEvent()
     {
-        Model::saved(function($post){
+
+        Model::deleted (function($post){
             $user_id=Auth::user()->id;
-            $message="用户保存了".$post;
+            $message="用户删除了";
             $ip=Request::getClientIp();
             Logs::put($message, $user_id,$ip);
         });
-        Model::updated(function($post){
-            $user_id=Auth::user()->id;
-            $message="用户保存了".$post;
-            $ip=Request::getClientIp();
-            Logs::put($message, $user_id,$ip);
-        });
-        Model::deleted(function($post){
-            $user_id=Auth::user()->id;
-            $message="用户保存了".$post;
-            $ip=Request::getClientIp();
-            Logs::put($message, $user_id,$ip);
-        });
-        Model::created(function($post){
-            $user_id=Auth::user()->id;
-            $message="用户保存了".$post;
-            $ip=Request::getClientIp();
-            Logs::put($message, $user_id,$ip);
-        });
+
     }
 
 }

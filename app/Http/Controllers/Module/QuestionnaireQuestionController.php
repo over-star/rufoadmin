@@ -36,11 +36,13 @@ class QuestionnaireQuestionController extends BaseController
     {
         $all=QuestionnaireQuestion::query()->where('questionnaire_id',$questionnaire_id)
             ->groupBy('group_number')
-            ->select(DB::raw('ANY_VALUE(questionnaire_id) as questionnaire_id,ANY_VALUE(title) title,ANY_VALUE(description) ,ANY_VALUE(type),
-            ANY_VALUE(score) score,ANY_VALUE(lang) lang,
-            ANY_VALUE(created_at),ANY_VALUE(updated_at),
-            ANY_VALUE(id) id,group_number'))
+//            ->select(DB::raw('ANY_VALUE(questionnaire_id) as questionnaire_id,ANY_VALUE(title) title,ANY_VALUE(description) ,ANY_VALUE(type),
+//            ANY_VALUE(score) score,ANY_VALUE(lang) lang,
+//            ANY_VALUE(created_at),ANY_VALUE(updated_at),
+//            ANY_VALUE(id) id,group_number'))
             ->paginate(15);
+
+        //dd($all->items());
         return view('admin.questionnaire.question.index',compact('all','questionnaire_id'));
     }
 

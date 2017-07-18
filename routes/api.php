@@ -16,7 +16,10 @@ use Illuminate\Http\Request;
 $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', function ($api) {
     $api->get('/', function () {
-        return 'test';
+        return response()->json(['status'=>'sss']);
+    });
+    $api->post('/', function () {
+        return response()->json(['status'=>'sss']);
     });
     $api->get('login', 'App\Http\Controllers\Api\UserController@login');
     $api->get('/protected', function () {
