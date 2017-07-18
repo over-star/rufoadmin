@@ -56,7 +56,7 @@
                         <a href="#">{{$v->id}}</a>
                     </td>
                     <td>{{$v->message}}</td>
-                    <td>{{$v->user_id}}</td>
+                    <td>{{$v->users->name or ""}}</td>
                     <td>
                         <span class="label label-sm label-warning">{{$v->ip}}</span>
                     </td>

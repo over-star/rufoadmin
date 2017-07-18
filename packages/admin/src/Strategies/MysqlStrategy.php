@@ -37,7 +37,7 @@ class MysqlStrategy implements LogInterface
      */
     public function get($page,$number=null)
     {
-        $handle_log=HandleLog::query()->orderBy('id','desc')->paginate($number,['*'], $pageName = 'page', $page);
+        $handle_log=HandleLog::query()->with('users')->orderBy('id','desc')->paginate($number,['*'], $pageName = 'page', $page);
         return $handle_log;
     }
 
