@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
  * Class Authenticate
  * @package App\Http\Middleware
  */
-class Cros
+class Cors
 {
 
     public function handle($request, Closure $next)
