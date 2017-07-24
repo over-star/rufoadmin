@@ -139,10 +139,8 @@ class ResponseMiddleware
     public function recordRequest($request, $value, $type): string
     {
         if (count($request->all())) {
-            $value .= 'Request参数信息:';
-            foreach ($request->all() as $k => $v) {
-                $value .= PHP_EOL . '    ' . $k . '==>' . $v;
-            }
+            $value .= PHP_EOL.'Request参数信息:';
+                $value .= PHP_EOL.$request->getContent();
         }
         $value .= PHP_EOL . 'Request Header信息:';
         $value .= PHP_EOL . '    Content-Type==>' . $type;
@@ -161,9 +159,9 @@ class ResponseMiddleware
     {
         $type = $response->headers->get('Content-Type');
         if ($type == "text/html; charset=UTF-8" || is_null($type)) {
-            $value .= PHP_EOL . 'Response信息:' . PHP_EOL . '    返回为html页面,请登录浏览器查看!' . PHP_EOL;
+            $value .= PHP_EOL . 'Response信息:' . PHP_EOL . '    返回为html页面,请登录浏览器查看!';
         } else {
-            $value .= PHP_EOL . 'Response信息:' . PHP_EOL . '    ' . $response->content() . PHP_EOL;
+            $value .= PHP_EOL . 'Response信息:' . PHP_EOL . '    ' . $response->content();
         }
         return array($type, $value);
     }
@@ -177,7 +175,7 @@ class ResponseMiddleware
     public function recordUri($request, $datetime, $response): string
     {
         $uri = $request->getUri();
-        $value = '[' . $datetime . ']' . '请求URI:' . $uri . '请求状态:' . $response->getStatusCode() . '/' . $request->method();
+        $value = '***[' . $datetime . ']' . '请求URI:' . $uri . '请求状态:' . $response->getStatusCode() . '/' . $request->method().'$$$';
         return $value;
     }
 

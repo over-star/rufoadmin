@@ -49,6 +49,9 @@ Route::group(['as' => 'admin.'], function () {
         Route::get('system/plugins/enable/{name}', ['uses' => $namespacePrefix.'SystemController@pluginsEnable']);
         Route::get('system/plugins/disable/{name}', ['uses' => $namespacePrefix.'SystemController@pluginsDisable']);
         Route::get('system/plugins/uninstall/{name}', ['uses' => $namespacePrefix.'SystemController@pluginsUninstall']);
+        //系统日志
+        Route::get('log-viewer/request', ['uses' => $namespacePrefix.'LogController@request']);
+        Route::get('log-viewer/request/detail/{name}', ['uses' => $namespacePrefix.'LogController@detail']);
 
     });
 

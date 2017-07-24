@@ -23,6 +23,4 @@ Route::group(['middleware' => 'admin.user','namespace' => 'Module'], function ()
     Route::post('questionnaire/question/update/{group_number}', 'QuestionnaireQuestionController@update');
     //删除试题
     Route::delete('questionnaire/question/delete/{questionnaire_id}/{group_number}', 'QuestionnaireQuestionController@delete');
-
-
 });
