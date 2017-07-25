@@ -18,7 +18,7 @@ class LogController extends Controller
 {
     public function request()
     {
-        $all = $this->traverse(storage_path('logs\https'));
+        $all = $this->traverse(storage_path('logs'.DIRECTORY_SEPARATOR.'https'));
         $temp = [];
         foreach ($all as $k => $v) {
             $temp[$k]['name'] = $this->retrieve($v);
@@ -31,7 +31,7 @@ class LogController extends Controller
 
     public function detail($name)
     {
-        $file=storage_path('logs\https\\'.$name);
+        $file=storage_path('logs'.DIRECTORY_SEPARATOR.'https'.DIRECTORY_SEPARATOR.$name);
         $str=file_get_contents($file);
         $all=explode('***',$str);
         array_shift($all);
@@ -40,7 +40,7 @@ class LogController extends Controller
 
     public function retrieve($url)
     {
-        $array=explode('\\',$url);
+        $array=explode(DIRECTORY_SEPARATOR,$url);
         $last=array_last($array);
         return $last;
     }
