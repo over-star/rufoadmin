@@ -65,10 +65,10 @@ class AdminController extends Controller
     public function postLogin(Request $request)
     {
         $this->validateLogin($request);
-        if ($this->hasTooManyLoginAttempts($request)) {
-            $this->fireLockoutEvent($request);
-            return $this->sendLockoutResponse($request);
-        }
+//        if ($this->hasTooManyLoginAttempts($request)) {
+//            $this->fireLockoutEvent($request);
+//            return $this->sendLockoutResponse($request);
+//        }
         $credentials = $this->credentials($request);
 //        if ($this->guard()->attempt($credentials, $request->has('remember'))) {
         if (Auth::attempt($credentials, $request->has('remember'))) {
