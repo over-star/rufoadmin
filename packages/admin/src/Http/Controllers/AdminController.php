@@ -12,8 +12,6 @@ use Logs;
 
 class AdminController extends Controller
 {
-    use AuthenticatesUsers;
-
     public function callback(){
         $socialiteUser = Socialite::driver('github')->user();
         $id=$socialiteUser->getId();;
@@ -51,7 +49,8 @@ class AdminController extends Controller
         $message="用户退出系统";
         $ip=$request->getClientIp();
         Logs::put($message, $user_id,$ip);
-        $this->guard()->logout();
+        //$this->guard()->logout();
+        Auth::logout();
         $request->session()->flush();
         $request->session()->regenerate();
         return redirect('admin/login');
@@ -64,22 +63,20 @@ class AdminController extends Controller
     //复用laravel的登录
     public function postLogin(Request $request)
     {
-        $this->validateLogin($request);
 //        if ($this->hasTooManyLoginAttempts($request)) {
 //            $this->fireLockoutEvent($request);
 //            return $this->sendLockoutResponse($request);
 //        }
-        $credentials = $this->credentials($request);
+        $input = $request->only(['email', 'password']);
 //        if ($this->guard()->attempt($credentials, $request->has('remember'))) {
-        if (Auth::attempt($credentials, $request->has('remember'))) {
+        if (Auth::attempt($input,$request->has('remember'))) {
             $user_id=Auth::user()->id;
             $message="用户登录";
             $ip=$request->getClientIp();
             Logs::put($message, $user_id,$ip);
             return redirect('/dashboard');
         }
-        $this->incrementLoginAttempts($request);
-        return $this->sendFailedLoginResponse($request);
+        return back()->withErrors('账号或者密码错误');
     }
 
     /*
