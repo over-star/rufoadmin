@@ -70,7 +70,8 @@ class AdminController extends Controller
             return $this->sendLockoutResponse($request);
         }
         $credentials = $this->credentials($request);
-        if ($this->guard()->attempt($credentials, $request->has('remember'))) {
+//        if ($this->guard()->attempt($credentials, $request->has('remember'))) {
+        if (Auth::attempt($credentials, $request->has('remember'))) {
             $user_id=Auth::user()->id;
             $message="用户登录";
             $ip=$request->getClientIp();

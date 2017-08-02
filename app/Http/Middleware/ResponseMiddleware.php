@@ -91,7 +91,7 @@ class ResponseMiddleware
      * @param $value
      * @return string
      */
-    public function recordStack($value): string
+    public function recordStack($value)
     {
         $traces = debug_backtrace();
         $msg = '';
@@ -109,7 +109,7 @@ class ResponseMiddleware
      * @param $value
      * @return string
      */
-    public function recordsFile($request, $value): string
+    public function recordsFile($request, $value)
     {
         foreach ($request->headers as $k => $v) {
             if ($k == 'content-type' && strstr($v[0], 'multipart/form-data;')) {
@@ -136,7 +136,7 @@ class ResponseMiddleware
      * @param $type
      * @return string
      */
-    public function recordRequest($request, $value, $type): string
+    public function recordRequest($request, $value, $type)
     {
         if (count($request->all())) {
             $value .= PHP_EOL.'Request参数信息:';
@@ -155,7 +155,7 @@ class ResponseMiddleware
      * @param $value
      * @return array
      */
-    public function recordResponse($response, $value): array
+    public function recordResponse($response, $value)
     {
         $type = $response->headers->get('Content-Type');
         if ($type == "text/html; charset=UTF-8" || is_null($type)) {
@@ -172,7 +172,7 @@ class ResponseMiddleware
      * @param $response
      * @return string
      */
-    public function recordUri($request, $datetime, $response): string
+    public function recordUri($request, $datetime, $response)
     {
         $uri = $request->getUri();
         $value = '***[' . $datetime . ']' . '请求URI:' . $uri . '请求状态:' . $response->getStatusCode() . '/' . $request->method().'$$$';
