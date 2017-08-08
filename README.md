@@ -1,43 +1,68 @@
 
 ## About RufoAdmin
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+为什么我要做这个后台系统？我太闲？当然不是，提高生产力！这是一个基于laravel5.4的管理后台，
+已经内置了RBAC权限管理，多语言问卷，日志管理等等功能，更多功能等你发现。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## How to use
+- composer install
+- cp .env.bak .env
+- 运行rufoadmin.sql
+- happy enjoy!
+##特别提醒
+千万不要忘记STAR,START,STAR ! ! !
+- 建议使用PHP7环境，mysql使用5.6，不开严格模式，group by在严格模式下不能兼容。
+- 超管账号：123456@qq.com 密码：123456  请不要随便操作菜单
+- 没什么权限的用户：123@qq.com 密码：123456  请不要随便操作菜单
+## 一些特别的说明
+1. 我是怎么实现的权限控制的呢？
+```$xslt
+我主要实现了角色-用户-权限的机制，如果用户没用权限这不能显示对应的菜单，并且不能访问对应的URL，
+后台有一个特别的权限是浏览后台，记忆啥名忘记了。
+```
+2. 多语言问卷是怎么回事呢？
+```$xslt
+因为在以前工作中老用到问卷模块就顺手加了一个，只是实现了一个后台的功能，前台需要自己实现，内置3中语言中日英。问题类型单选，多选，问答题。
+```
+3. 插件机制，如何实现插件机制？
+```$xslt
+作者开发前期有一个愚昧的想法，把每个模块写在一个单独的包里，通过composer自动加载，但是这样扩展性依然不是很高，并且对用户友好，作者开发的
+的admin后台模块就是在一个包里，基本所以代码都在一个包里，这对别人维护来说有点捉襟见肘。最终想起了wordpress的即插即用的插件机制。
+如何实现插件机制呢?我前期只能模仿wordpress来开发，wordpress的钩子函数是插件的核心，而laravel却没有对应的功能，作为替代方案我觉得可以用事件来代替。
+最终实现了简单的插件功能，插件开启，关闭，删除都会触发对应的插件，插件开启时其代码也会被加载！
+```
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+## 开发一个简单的插件
+特别的，我规定插件放在plugins目录，每个插件目录下面有一个package.json文件配置插件的信息。
+- 目录结构如下图所示：
+- ![目录结构](public/0.png)
+```$xslt
+注意：实际控制器的命名空间应该和package.json文件里面的命名空间相对应。当开启一个插件时会执行
+PluginWasEnabled.php的代码，其他类似
+- 逼者写了2个方法来添加和删除菜单，源码位于packages/admin/src/Admin.php
+//add_menu($title, $url, $parent_menu_id=0,$is_create_permission = false,$permission_name='')
+Admin::add_menu('编辑env文件', 'system/env/index',7);
+Admin::delete_menu('编辑env文件');
+- 对于插件中有有资源文件的情况，需要执行以下代码来拷贝资源到public目录
+$file = new FileUtil();
+$file->copyDir(plugin_address('edit-env/asset'),'vendor/plugins/edit-env',true);
+- 插件的路由对应插件的routes.php，views视图文件对应插件的views目录
+```
 
-## Learning Laravel
+## 关于我
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+不会JAVA的PHPer不是一个好的php程序员！
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+##后台开发说明
 
-## Laravel Sponsors
+1. 开发流程:添加权限(权限标识和url一致，例如：admin/permission/index)->添加url->添加菜单(绑定权限)->修改逻辑.
+2. 数据库备份表数据说明:php artisan iseed users
+3. 权限名字应用菜单url相同,菜单的(菜单active_url)应为路有前面加/
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
-
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
+## 后期计划
+1. 添加内容管理功能，例如文章管理
+2. 添加用户权限组功能
+3. 商城。。。
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+rufoadmin is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
