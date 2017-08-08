@@ -163,7 +163,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">添加用户</h4>
                 </div>
-                <form action="{{url('admin/role/create')}}" method="post" class="form-horizontal">
+                <form action="{{url('admin/user/create')}}" method="post" class="form-horizontal">
                     <div class="modal-body">
                         {!! csrf_field() !!}
                         <div class="form-group">
