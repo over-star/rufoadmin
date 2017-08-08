@@ -42,14 +42,20 @@
 PluginWasEnabled.php的代码，其他类似
 ```
 - 逼者写了2个方法来添加和删除菜单，源码位于packages/admin/src/Admin.php
+```$xslt
 //add_menu($title, $url, $parent_menu_id=0,$is_create_permission = false,$permission_name='')
 Admin::add_menu('编辑env文件', 'system/env/index',7);
 Admin::delete_menu('编辑env文件');
+```
+
 - 对于插件中有有资源文件的情况，需要执行以下代码来拷贝资源到public目录
+```$xslt
 $file = new FileUtil();
 $file->copyDir(plugin_address('edit-env/asset'),'vendor/plugins/edit-env',true);
 - 插件的路由对应插件的routes.php，views视图文件对应插件的views目录
 - 其他：略，以后补充
+```
+
 
 ## 大概什么样子
 - ![目录结构](public/1.png)
