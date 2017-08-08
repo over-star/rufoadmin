@@ -40,6 +40,7 @@
 ```$xslt
 注意：实际控制器的命名空间应该和package.json文件里面的命名空间相对应。当开启一个插件时会执行
 PluginWasEnabled.php的代码，其他类似
+```
 - 逼者写了2个方法来添加和删除菜单，源码位于packages/admin/src/Admin.php
 //add_menu($title, $url, $parent_menu_id=0,$is_create_permission = false,$permission_name='')
 Admin::add_menu('编辑env文件', 'system/env/index',7);
@@ -49,7 +50,7 @@ $file = new FileUtil();
 $file->copyDir(plugin_address('edit-env/asset'),'vendor/plugins/edit-env',true);
 - 插件的路由对应插件的routes.php，views视图文件对应插件的views目录
 - 其他：略，以后补充
-```
+
 ## 大概什么样子
 - ![目录结构](public/1.png)
 - ![目录结构](public/2.png)
