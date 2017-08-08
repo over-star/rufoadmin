@@ -2,14 +2,14 @@
 ## About RufoAdmin
 
 为什么我要做这个后台系统？我太闲？当然不是，提高生产力！这是一个基于laravel5.4的管理后台，页面采用ACEAdmin，
-已经内置了RBAC权限管理，多语言问卷，日志管理等等功能，更多功能等你发现。
+已经内置了RBAC权限管理，多语言问卷，日志管理等等功能，更多功能等你发现。有些细节可能没有注意，所以可能会有bug！
 
 ## How to use
 - composer install
 - cp .env.bak .env
 - 运行rufoadmin.sql
 - happy enjoy!
-##特别提醒
+## 特别提醒
 千万不要忘记STAR,START,STAR ! ! !
 - 建议使用PHP7环境，mysql使用5.6，不开严格模式，group by在严格模式下不能兼容。
 - 临时测试地址：http://www.rufo.site/admin/login
@@ -50,7 +50,7 @@ $file->copyDir(plugin_address('edit-env/asset'),'vendor/plugins/edit-env',true);
 - 插件的路由对应插件的routes.php，views视图文件对应插件的views目录
 - 其他：略，以后补充
 ```
-##大概什么样子
+## 大概什么样子
 - ![目录结构](public/1.png)
 - ![目录结构](public/2.png)
 - ![目录结构](public/3.png)
