@@ -14,8 +14,8 @@ return [
     |
     */
     'github' => [
-        'client_id' => '02984a016fcb98b0ac8f',
-        'client_secret' => '713ea2739c0fbb80a53976c7700e5b27aab2e38c',
+        'client_id' => '',
+        'client_secret' => '',
         'redirect' => 'http://ace.dev/auth/user/callback',
     ],
 

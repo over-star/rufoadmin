@@ -71,8 +71,7 @@ $file->copyDir(plugin_address('edit-env/asset'),'vendor/plugins/edit-env',true);
 ##后台开发说明
 
 1. 开发流程:添加权限(权限标识和url一致，例如：admin/permission/index)->添加url->添加菜单(绑定权限)->修改逻辑.
-2. 数据库备份表数据说明:php artisan iseed users
-3. 权限名字应用菜单url相同,菜单的(菜单active_url)应为路有前面加/
+3. 权限名字应用菜单url相同,菜单的(菜单active_url)是激活的样式
 
 ## 后期计划
 1. 添加内容管理功能，例如文章管理
