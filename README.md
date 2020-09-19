@@ -66,7 +66,7 @@ $file->copyDir(plugin_address('edit-env/asset'),'vendor/plugins/edit-env',true);
 
 ## 关于我
 
-不会JAVA的PHPer不是一个好的php程序员！
+php程序员！
 
 ##后台开发说明
 
